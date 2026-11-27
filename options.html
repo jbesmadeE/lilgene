@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Helper — Settings</title>
+    <link rel="stylesheet" href="css/options.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-head">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none">
+              <path
+                d="M12 3c.55 4.55 3.45 7.45 8 8-4.55.55-7.45 3.45-8 8-.55-4.55-3.45-7.45-8-8 4.55-.55 7.45-3.45 8-8Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div>
+            <h1>Job Helper</h1>
+            <p>AI settings</p>
+          </div>
+        </div>
+        <span class="status" id="saveStatus">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="saveStatusLabel">Saved</span>
+        </span>
+      </header>
+
+      <main class="stack">
+        <section class="card" aria-labelledby="aiHeading">
+          <div class="card-head">
+            <h2 id="aiHeading">AI provider</h2>
+            <p>Pick one free provider, paste a key, and test it. Keys stay on this device.</p>
+          </div>
+
+          <div class="grid">
+            <label class="field">
+              <span class="field-label">Provider</span>
+              <select id="provider" class="input"></select>
+            </label>
+
+            <label class="field">
+              <span class="field-label">Model</span>
+              <input
+                id="model"
+                class="input"
+                list="modelList"
+                spellcheck="false"
+                autocomplete="off"
+              />
+              <datalist id="modelList"></datalist>
+            </label>
+          </div>
+
+          <label class="field">
+            <span class="field-label">
+              API key
+              <span class="muted" id="keyFor"></span>
+            </span>
+            <input
+              id="apiKey"
+              class="input"
+              type="password"
+              spellcheck="false"
+              autocomplete="off"
+              placeholder="Paste your key"
+            />
+          </label>
+
+          <div class="row">
+            <label class="check">
+              <input type="checkbox" id="fallback" />
+              <span>Fall back to other configured providers if this one fails</span>
+            </label>
+            <a id="keyLink" class="link" target="_blank" rel="noreferrer">Get a free key ↗</a>
+          </div>
+
+          <p class="note" id="providerNote"></p>
+
+          <div class="actions">
+            <button id="testBtn" class="btn ghost" type="button">Test connection</button>
+            <span id="testResult" class="result" role="status"></span>
+          </div>
+        </section>
+
+        <p class="fineprint">
+          Keys are stored in <code>chrome.storage.local</code> and sent only to the
+          provider you select. Letters are drafts — always review before sending.
+        </p>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/ai-providers.js"></script>
+    <script src="js/options.js"></script>
+  </body>
+</html>
